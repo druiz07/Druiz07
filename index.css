@@ -11,20 +11,44 @@ body {
     padding: 0;
     box-sizing: border-box;
     /* Configuración del gradiente inicial */
-    background: linear-gradient(#070531, #031481);
+    background: #070531; /* Color de fondo inicial */
     /* Animación de cambio de color en el fondo */
     animation: changeBackground 10s ease-in-out infinite alternate;
 }
 
 @keyframes changeBackground {
     0% {
-        background: linear-gradient(#070531, #031481);
+        background-color: #070531;
+    }
+    10% {
+        background-color: #0c0a5a;
+    }
+    20% {
+        background-color: #091085;
+    }
+    30% {
+        background-color: #0444a0;
+    }
+    40% {
+        background-color: #026a9d;
     }
     50% {
-        background: linear-gradient(#031481, #0b2392);
+        background-color: #0b2392;
+    }
+    60% {
+        background-color: #1b569a;
+    }
+    70% {
+        background-color: #007f7f;
+    }
+    80% {
+        background-color: #1a966b;
+    }
+    90% {
+        background-color: #0e4f69;
     }
     100% {
-        background: linear-gradient(#0b2392, #070531);
+        background-color: #070531;
     }
 }
 
