@@ -6,6 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="stylesheet" href="index.css">
+    <style>
+       
+        @keyframes backgroundChange {
+            0% { background-color: #1e90ff; }   /* Azul */
+            25% { background-color: #ff6347; }  /* Rojo tomate */
+            50% { background-color: #32cd32; }  /* Verde lima */
+            75% { background-color: #ff69b4; }  /* Rosa caliente */
+            100% { background-color: #1e90ff; } /* Azul (cierra el ciclo) */
+        }
+
+        body {
+            animation: backgroundChange 20s infinite;
+            background-color: #1e90ff; /* color inicial */
+        }
+
+        section.banner {
+            background-color: transparent;  /* Asegúrate de que sea transparente */
+        }
+    </style>
 </head>
 <body>
     <section class="banner" id="sec">
@@ -26,12 +45,14 @@
                     <p class="important golden-color">Daniel Ruiz Figueroa</p>
                 </div>
                 <h3>
-                    Un desarrollador entusiasta especializado en desarrollo de juegos y software que reside en Madrid, España. 
-                    <br>Me gradué de la Universidad Complutense de Madrid (UCM) con un título en Desarrollo de Videojuegos.
-                    <br>Poseo cuatro años de experiencia práctica en el desarrollo de proyectos y ahora estoy buscando con entusiasmo oportunidades dentro de la industria del software.
-                    
-                    
+                    Soy un apasionado desarrollador de juegos y software, residente en la ciudad de Madrid, España.
                 </h3>
+                <p>
+                    Cuento con un graduado en la <strong>Universidad Complutense de Madrid (UCM)</strong> con un título en Desarrollo de Videojuegos,
+                    con cuatro años de experiencia práctica llevando a cabo proyectos innovadores en distintos lenguajes de programacion.   
+                    Ahora, con gran entusiasmo, busco nuevas y emocionantes oportunidades para aportar mis habilidades y seguir creciendo en la industria del desarr.
+                </p>
+                
 
                 <div class="add-space5"></div>
 
@@ -40,7 +61,7 @@
 
                 <div class="add-space5"></div>
 
-                <h2>DESCARGAR CURRÍCULUM</h2>
+                <h2>Descarga mi Currículum!</h2>
                 <a href="img/CV_DanielRuiz.pdf" target="_blank">
                     <button class="curriculum">Currículum</button>
                   </a>
