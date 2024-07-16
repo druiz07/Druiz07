@@ -6,10 +6,10 @@ I'm passionate about learning, thrive in teamwork, efficient, and excel at probl
 
 It's worth noting I have a B2 level in English, ensuring smooth communication for effective collaboration on international projects. I'm prepared to tackle new challenges and continuously expand my skill set.
 
-Looking forward to connecting with you! 🌍👇
+Looking forward on connecting with you! 🌍👇
 
 **Contact Information:**
 - Email: daniel.ruiz.figueroa01@gmail.com
 - GitHub: https://github.com/Druiz07
 - LinkedIn: www.linkedin.com/in/daniel-ruiz-figueroa-developer
-- Portfolio: https://alejao03.github.io/Druiz07/
+- Portfolio: https://druiz07.github.io/Druiz07/
