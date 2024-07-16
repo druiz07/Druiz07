@@ -52,6 +52,30 @@ body {
     }
 }
 
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 50%; /* Ajusta según tu preferencia */
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    color: white;
+    text-align: center;
+    z-index: 1000; /* Ajusta según sea necesario */
+}
+
+.sidebar a {
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
 .curriculum
 {
     color: #000;
@@ -270,7 +294,10 @@ h4{
 {
     color: rgb(253 224 71 / 1);
 }
-
+.content .electric-blue-color
+{
+   color: rgb(0, 255, 255);
+}
 .content .title
 {
     font-size: clamp(1.25rem, 0.9868rem + 1.0526vw, 2.25rem);
@@ -504,9 +531,7 @@ header a:hover
 
 .label-grid-container-bg
 {
-    width: 100%;
-    background-color: rgba(81, 37, 163, 0.9);
-    
+    width: 100%;    
     display: flex;
     flex-wrap:wrap;
     justify-content: center;
@@ -1017,6 +1042,88 @@ header a:hover
         width: 350px;
         height: 200px;
     }
+}
+
+.label-grid-bg {
+    background: linear-gradient(135deg, #2980b9, #2c3e50); /* Cambia los colores de gradiente según tu preferencia */
+    border-radius: 15px; /* Añade esquinas redondeadas al contenedor */
+    padding: 20px; /* Añade espacio interno al contenedor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra para dar profundidad */
+    animation: cloudEffect 10s infinite ease-in-out alternate; /* Animación de efecto de nube */
+}
+
+@keyframes cloudEffect {
+    0% {
+        transform: translateY(0) scale(1); /* Movimiento vertical y escala normal */
+        opacity: 0.9; /* Opacidad inicial */
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1); /* Movimiento ascendente y escala aumentada */
+        opacity: 1; /* Opacidad máxima */
+    }
+    100% {
+        transform: translateY(0) scale(1); /* Vuelve a la posición original y escala normal */
+        opacity: 0.9; /* Opacidad inicial */
+    }
+}
+
+.image-grid-container {
+    margin-bottom: 20px; /* Espacio entre contenedores */
+    padding: 10px; /* Añade espacio interno */
+    border-radius: 10px; /* Redondea los bordes de los contenedores internos */
+    background-color: rgba(255, 255, 255, 0.1); /* Color de fondo semi-transparente */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera para separar visualmente */
+}
+
+
+/* Estilos para los iconos de GitHub y LinkedIn */
+.image-grid2 a {
+    display: inline-block;
+    margin: 0 10px; /* Margen entre los iconos */
+    position: relative; /* Posición relativa para desplazar con transformaciones */
+    animation-duration: 6s; /* Duración de la animación */
+    animation-iteration-count: infinite; /* Repetición infinita de la animación */
+    animation-timing-function: cubic-bezier(0.3, 0.2, 0.8, 0.7); /* Función de temporización personalizada para un movimiento más fluido */
+    animation-direction: alternate; /* Dirección alternante de la animación */
+}
+
+@keyframes moveGitHub {
+    0%, 100% {
+        transform: translate(0, 0); /* Posición inicial y final (sin movimiento) */
+    }
+    25% {
+        transform: translate(-50px, -30px); /* Movimiento hacia la izquierda y arriba */
+    }
+    50% {
+        transform: translate(-100px, 0); /* Movimiento máximo hacia la izquierda */
+    }
+    75% {
+        transform: translate(-50px, 30px); /* Movimiento hacia la izquierda y abajo */
+    }
+}
+
+@keyframes moveLinkedIn {
+    0%, 100% {
+        transform: translate(0, 0); /* Posición inicial y final (sin movimiento) */
+    }
+    25% {
+        transform: translate(50px, 30px); /* Movimiento hacia la derecha y abajo */
+    }
+    50% {
+        transform: translate(100px, 0); /* Movimiento máximo hacia la derecha */
+    }
+    75% {
+        transform: translate(50px, -30px); /* Movimiento hacia la derecha y arriba */
+    }
+}
+
+/* Aplicar animaciones a los iconos específicos */
+.image-grid2 a:nth-child(1) {
+    animation-name: moveGitHub;
+}
+
+.image-grid2 a:nth-child(2) {
+    animation-name: moveLinkedIn;
 }
 
 button {
