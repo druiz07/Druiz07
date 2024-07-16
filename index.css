@@ -7,11 +7,25 @@
 }
 
 body {
-    background: linear-gradient(#070531, #031481);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* width: auto; */
+    /* Configuración del gradiente inicial */
+    background: linear-gradient(#070531, #031481);
+    /* Animación de cambio de color en el fondo */
+    animation: changeBackground 10s ease-in-out infinite alternate;
+}
+
+@keyframes changeBackground {
+    0% {
+        background: linear-gradient(#070531, #031481);
+    }
+    50% {
+        background: linear-gradient(#031481, #0b2392);
+    }
+    100% {
+        background: linear-gradient(#0b2392, #070531);
+    }
 }
 
 .curriculum
