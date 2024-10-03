@@ -74,7 +74,31 @@ body {
 
 .sidebar a:hover {
     text-decoration: underline;
+    width: 500px; 
 }
+
+
+/* Estilo general para la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 20px; 
+}
+
+/* Estilo del track (fondo) de la barra de desplazamiento */
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1; 
+}
+
+/* Estilo del thumb (la parte que se desplaza) de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+    background-color: #001f3f; 
+
+}
+
+/* Estilo cuando el thumb está siendo interactuado (hover) */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
 
 .curriculum
 {
@@ -166,7 +190,7 @@ h4{
 .projects{
     margin: 0 auto;
     width: 100%;
-    background-color: rgba(101, 72, 168, 0.6);
+    background-color: #001f3f; /* Azul oscuro */
     border-radius: 20px;
 }
 
