@@ -177,7 +177,12 @@ h4{
     width: 90%;
     margin:0 auto;
 }
-
+.centered-button {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente (si es necesario) */
+    width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+}
 .row-buttons
 {
     margin:0 auto;
