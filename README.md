@@ -6,7 +6,8 @@ I'm passionate about learning, thrive in teamwork, efficient, and excel at probl
 
 It's worth noting I have a B2 level in English, ensuring smooth communication for effective collaboration on international projects. I'm prepared to tackle new challenges and continuously expand my skill set.
 
-![Loading GIF](https://giphy.com/gifs/pacman-love-food-A8NkSPltT13H2)
+![Loading GIF](https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeDlkN285bGNpaHZwaXl2cnI1am4ybm9haHprY29mc3RtbTVsODZpayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HN4JACm508pPtI17ZY/giphy.gif)
+
 
 
 
