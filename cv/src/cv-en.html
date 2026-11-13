@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Daniel Ruiz Figueroa · CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { width: 210mm; min-height: 297mm; padding: 10mm 14mm 8mm; background: #fff; color: #141a26;
+  font: 400 8.3pt/1.38 "Manrope", system-ui, sans-serif; }
+a { color: inherit; text-decoration: none; }
+header { display: grid; grid-template-columns: 1fr auto; gap: 8mm; align-items: end; padding-bottom: 3.6mm; border-bottom: 1.4pt solid #0b1220; }
+h1 { font: 700 23pt/1 "Archivo", sans-serif; font-stretch: 118%; letter-spacing: -.02em; text-transform: uppercase; }
+.role { margin-top: 2.2mm; font: 500 8pt "DM Mono", monospace; letter-spacing: .18em; text-transform: uppercase; color: #0a6f8f; }
+.contact { display: grid; gap: .6mm; justify-items: end; font: 400 7.6pt/1.5 "DM Mono", monospace; color: #3a4558; }
+.contact b { font-weight: 500; color: #141a26; }
+section { margin-top: 3.4mm; }
+h2 { display: flex; align-items: center; gap: 3mm; margin-bottom: 1.7mm; font: 500 7.2pt "DM Mono", monospace; letter-spacing: .22em; text-transform: uppercase; color: #0a6f8f; }
+h2::after { content: ""; flex: 1; height: .5pt; background: #c9d2df; }
+.summary { font-size: 8.8pt; line-height: 1.42; color: #232c3b; }
+.item + .item { margin-top: 2.2mm; }
+.item__top { display: flex; justify-content: space-between; align-items: baseline; gap: 6mm; }
+h3 { font: 700 9.4pt "Archivo", sans-serif; font-stretch: 110%; letter-spacing: -.005em; }
+h3 span { font: 500 8.1pt "Manrope", sans-serif; color: #3a4558; }
+.when { font: 400 7.4pt "DM Mono", monospace; letter-spacing: .06em; color: #566176; white-space: nowrap; }
+ul { margin: 1.2mm 0 0 3.6mm; }
+li { padding-left: 1mm; margin-top: .5mm; color: #2a3342; }
+li::marker { color: #0a6f8f; }
+.stack { margin-top: 1.2mm; font: 400 7.5pt "DM Mono", monospace; color: #566176; }
+.grid { display: grid; grid-template-columns: 34mm 1fr; gap: 1.1mm 4mm; }
+.grid dt { font: 500 7.2pt/1.9 "DM Mono", monospace; letter-spacing: .1em; text-transform: uppercase; color: #566176; }
+.cols { display: grid; grid-template-columns: 1.25fr 1fr; gap: 8mm; }
+</style></head><body>
+<header><div><h1>Daniel Ruiz Figueroa</h1><p class="role">Computer Engineer</p></div>
+<div class="contact"><span>Brunete, Madrid, Spain</span><span>+34 620 64 83 05</span><a href="mailto:daniel.ruiz.figueroa01@gmail.com">daniel.ruiz.figueroa01@gmail.com</a>
+<a href="https://druiz07.github.io/Druiz07/"><b>Portfolio:</b> druiz07.github.io/Druiz07</a>
+<a href="https://www.linkedin.com/in/daniel-ruiz-figueroa-developer/"><b>LinkedIn:</b> in/daniel-ruiz-figueroa-developer</a>
+<a href="https://github.com/Druiz07"><b>GitHub:</b> github.com/Druiz07</a></div></header>
+<section><h2>Profile</h2><p class="summary">Computer Engineer based in Madrid, working as a Calypso developer in capital markets and heading for the space sector. I built SKYFALL, an open-source tool that maps where re-entering space debris is likely to fall, and a spacecraft descent and landing simulator as my final degree project.</p></section>
+<section><h2>Experience</h2><div class="item"><div class="item__top"><h3>Calypso Developer <span>· Qaracter · job title: Financial Analyst</span></h3><span class="when">Jan 2025 – Present · Madrid</span></div><ul><li>Develop and maintain trade confirmations for FX products on the Calypso platform.</li><li>Generate the confirmation documents with the specific data each product requires.</li><li>Manage delivery across confirmation channels: email, fax, TradeServ and SWIFT.</li></ul><p class="stack">Calypso · Java · Oracle SQL</p></div></section>
+<section><h2>Projects</h2><div class="item"><div class="item__top"><h3>SKYFALL <span>· Re-entry risk maps for space debris · open source (MIT)</span></h3><span class="when">2026</span></div><ul><li>Turns official re-entry warnings (TIP messages from Space-Track) into 90, 95 and 99 % probability zones on a 3D globe, and compares them with the airspace closure strips from the EASA bulletins.</li><li>Samples re-entry times from the measured error of a year of past warnings (about 4,450 warnings, 680 objects), propagates each orbit with SGP4 and scatters debris with Monte Carlo runs on a 0.5° grid.</li><li>Validated on 100 real warnings the model had never seen: the 95 % zone contained 95 confirmed impact points, against 87 for the 120 km strip, for about the same closed area.</li></ul><p class="stack">Python · FastAPI · pytest · React · TypeScript · CesiumJS · developed with Claude Code</p></div><div class="item"><div class="item__top"><h3>Spacecraft Descent and Landing Simulator <span>· Final degree project · solo · graded 8.9 / 10</span></h3><span class="when">2024</span></div><ul><li>Simulates descent and landing on the Moon, Mars and a configurable planet: gravity, wind, thrust, fuel burn that lightens the vehicle, hull heating, heat shield and parachute.</li><li>Mission parameters are set before each run; vehicle models are streamed at runtime from Microsoft Azure Blob Storage with private access keys, with a local fallback.</li></ul><p class="stack">C# · Unity · Azure Blob Storage · REST</p></div><div class="item"><div class="item__top"><h3>Love Engine <span>· Custom 3D engine in C++ · team project</span></h3><span class="when">University</span></div><ul><li>Engine built on Ogre3D (rendering), Bullet (physics), FMOD (audio) and Lua scripting, with a complete 3D title developed on top of it.</li></ul><p class="stack">C++ · Lua · Ogre3D · Bullet · FMOD</p></div></section>
+<section><h2>Education</h2><div class="item"><div class="item__top"><h3>BSc in Video Game Development <span>· Universidad Complutense de Madrid</span></h3><span class="when">2019 – 2024</span></div><ul><li>Programming in C++ and C#, physics simulation, artificial intelligence and machine learning, networking, and team projects run with Scrum and QA.</li></ul></div></section>
+<section><h2>Skills</h2><dl class="grid"><dt>Languages</dt><dd>Python, C#, C++, C, Java, TypeScript, JavaScript, SQL</dd><dt>Space &amp; simulation</dt><dd>SGP4 orbit propagation, Monte Carlo methods, rigid-body physics, Unity, CesiumJS</dd><dt>Backend &amp; cloud</dt><dd>FastAPI, REST APIs, Microsoft Azure, Oracle SQL, SQLite</dd><dt>Financial systems</dt><dd>Calypso, FX trade confirmations, SWIFT</dd><dt>Tools &amp; practice</dt><dd>Git, pytest, unit testing, Visual Studio, VS Code, Jupyter, Scrum</dd></dl></section>
+<section class="cols"><div><h2>Languages</h2><dl class="grid"><dt>Spanish</dt><dd>Native</dd><dt>English</dt><dd>B2 · Cambridge First Certificate</dd></dl></div><div><h2>Other</h2><dl class="grid"><dt>Driving licence</dt><dd>B</dd></dl></div></section>
+</body></html>
