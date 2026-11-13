@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>Daniel Ruiz Figueroa · CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { width: 210mm; height: 297mm; background: #fff; color: #141a26; font: 400 8.4pt/1.42 "Manrope", system-ui, sans-serif; display: grid; grid-template-rows: auto 1fr; overflow: hidden; }
+a { color: inherit; text-decoration: none; }
+header { background: #070b14; color: #e9eef7; padding: 11mm 14mm 8mm; display: grid; grid-template-columns: 1fr auto; gap: 8mm; align-items: center;
+  background-image: radial-gradient(70mm 40mm at 100% 0, rgba(60,110,200,.45), transparent 70%); }
+h1 { font: 700 25pt/1 "Archivo", sans-serif; font-stretch: 118%; letter-spacing: -.02em; text-transform: uppercase; }
+.role { margin-top: 2.6mm; font: 500 8.2pt "DM Mono", monospace; letter-spacing: .2em; text-transform: uppercase; color: #7fe3ff; }
+.contact { display: grid; grid-template-columns: auto auto; gap: .9mm 5mm; font: 400 7.5pt/1.5 "DM Mono", monospace; color: #c3cee0; }
+.contact i { font-style: normal; color: #7fe3ff; letter-spacing: .1em; text-transform: uppercase; font-size: 6.6pt; }
+.wrap { display: grid; grid-template-columns: 1fr 58mm; }
+main { padding: 6.5mm 8mm 8mm 14mm; }
+aside { padding: 6.5mm 12mm 8mm 8mm; background: #f1f4f9; border-left: .5pt solid #d3dbe7; }
+section + section { margin-top: 5mm; }
+h2 { margin-bottom: 2.4mm; padding-bottom: 1.4mm; border-bottom: .8pt solid #0b1220; font: 500 7.4pt "DM Mono", monospace; letter-spacing: .22em; text-transform: uppercase; color: #0a6f8f; }
+.summary { font-size: 9.1pt; line-height: 1.5; color: #232c3b; }
+.item + .item { margin-top: 3.6mm; }
+.item__top { display: flex; justify-content: space-between; align-items: baseline; gap: 4mm; }
+h3 { font: 700 10pt/1.2 "Archivo", sans-serif; font-stretch: 110%; }
+.sub { margin-top: .5mm; font-weight: 500; color: #3a4558; }
+.when { font: 400 7.3pt "DM Mono", monospace; color: #566176; white-space: nowrap; }
+ul { margin: 1.3mm 0 0 3.4mm; }
+li { padding-left: .8mm; margin-top: .7mm; color: #2a3342; }
+li::marker { color: #0a6f8f; }
+.stack { margin-top: 1.5mm; display: flex; flex-wrap: wrap; gap: 1mm; }
+.stack span { padding: .4mm 1.6mm; border: .5pt solid #b9c5d6; border-radius: 1mm; font: 400 6.9pt "DM Mono", monospace; color: #3a4558; }
+aside h3 { font: 500 6.9pt "DM Mono", monospace; letter-spacing: .12em; text-transform: uppercase; color: #566176; margin-bottom: .8mm; }
+aside .g + .g { margin-top: 2.8mm; }
+aside p { color: #232c3b; }
+aside b { font: 700 9pt/1.25 "Archivo", sans-serif; font-stretch: 108%; display: block; }
+</style></head><body>
+<header><div><h1>Daniel Ruiz<br>Figueroa</h1><p class="role">Ingeniero informático</p></div>
+<div class="contact"><i>Web</i><a href="https://druiz07.github.io/Druiz07/">druiz07.github.io/Druiz07</a>
+<i>Email</i><a href="mailto:daniel.ruiz.figueroa01@gmail.com">daniel.ruiz.figueroa01@gmail.com</a>
+<i>Tel</i><span>+34 620 64 83 05</span>
+<i>LinkedIn</i><a href="https://www.linkedin.com/in/daniel-ruiz-figueroa-developer/">in/daniel-ruiz-figueroa-developer</a>
+<i>GitHub</i><a href="https://github.com/Druiz07">github.com/Druiz07</a>
+<i>Base</i><span>Brunete, Madrid, España</span></div></header>
+<div class="wrap"><main>
+<section><h2>Perfil</h2><p class="summary">Ingeniero informático en Madrid. Trabajo como desarrollador Calypso en mercados de capitales y oriento mi carrera hacia el sector espacial. He creado SKYFALL, una herramienta de código abierto que calcula dónde es probable que caiga la basura espacial en su reentrada, y un simulador de descenso y aterrizaje de naves espaciales como trabajo de fin de grado.</p></section>
+<section><h2>Experiencia</h2><div class="item"><div class="item__top"><h3>Desarrollador Calypso</h3><span class="when">Ene 2025 – Actualidad · Madrid</span></div><p class="sub">Qaracter · puesto: Analista financiero</p><ul><li>Desarrollo y mantenimiento de confirmaciones de operaciones de productos FX en la plataforma Calypso.</li><li>Generación de los documentos de confirmación con la información específica de cada producto.</li><li>Gestión del envío por las distintas vías de confirmación: email, fax, TradeServ y SWIFT.</li></ul><div class="stack"><span>Calypso</span><span>Java</span><span>Oracle SQL</span></div></div></section>
+<section><h2>Proyectos</h2><div class="item"><div class="item__top"><h3>SKYFALL</h3><span class="when">2026</span></div><p class="sub">Mapas de riesgo de reentrada de basura espacial · código abierto (MIT)</p><ul><li>Convierte los avisos oficiales de reentrada (mensajes TIP de Space-Track) en zonas de probabilidad del 90, 95 y 99 % sobre un globo 3D y las compara con las franjas de cierre de espacio aéreo de los boletines de EASA.</li><li>Muestrea la hora de reentrada a partir del error medido en un año de avisos anteriores (unos 4.450 avisos, 680 objetos), propaga cada órbita con SGP4 y dispersa los fragmentos con simulaciones de Monte Carlo en una rejilla de 0,5°.</li><li>Validado con 100 avisos reales que el modelo no había visto: la zona del 95 % contuvo 95 puntos de impacto confirmados, frente a 87 de la franja de 120 km, con un área cerrada similar.</li></ul><div class="stack"><span>Python</span><span>FastAPI</span><span>pytest</span><span>React</span><span>TypeScript</span><span>CesiumJS</span><span>desarrollado con Claude Code</span></div></div><div class="item"><div class="item__top"><h3>Simulador de descenso y aterrizaje de naves espaciales</h3><span class="when">2024</span></div><p class="sub">Trabajo de fin de grado · individual · nota 8,9 / 10</p><ul><li>Simula el descenso y aterrizaje en la Luna, Marte y un planeta configurable: gravedad, viento, empuje, consumo de combustible que aligera la nave, calentamiento del casco, escudo térmico y paracaídas.</li><li>Los parámetros de la misión se ajustan antes de cada simulación; los modelos de las naves se descargan en tiempo de ejecución desde Microsoft Azure Blob Storage con claves de acceso privadas, con alternativa en local.</li></ul><div class="stack"><span>C#</span><span>Unity</span><span>Azure Blob Storage</span><span>REST</span></div></div><div class="item"><div class="item__top"><h3>Love Engine</h3><span class="when">Universidad</span></div><p class="sub">Motor 3D propio en C++ · proyecto en equipo</p><ul><li>Motor construido sobre Ogre3D (renderizado), Bullet (físicas), FMOD (audio) y scripting en Lua, con un título 3D completo desarrollado sobre él.</li></ul><div class="stack"><span>C++</span><span>Lua</span><span>Ogre3D</span><span>Bullet</span><span>FMOD</span></div></div></section>
+</main><aside>
+<section><h2>Competencias</h2><div class="g"><h3>Lenguajes</h3><p>Python, C#, C++, C, Java, TypeScript, JavaScript, SQL</p></div><div class="g"><h3>Espacio y simulación</h3><p>Propagación orbital SGP4, métodos de Monte Carlo, física de sólido rígido, Unity, CesiumJS</p></div><div class="g"><h3>Backend y nube</h3><p>FastAPI, API REST, Microsoft Azure, Oracle SQL, SQLite</p></div><div class="g"><h3>Sistemas financieros</h3><p>Calypso, confirmaciones de operaciones FX, SWIFT</p></div><div class="g"><h3>Herramientas</h3><p>Git, pytest, pruebas unitarias, Visual Studio, VS Code, Jupyter, Scrum</p></div></section>
+<section><h2>Formación</h2><div class="g"><b>Grado en Desarrollo de Videojuegos</b><p>Universidad Complutense de Madrid</p><p class="when">2019 – 2024</p></div><div class="g"><p>Programación en C++ y C#, simulación física, inteligencia artificial y aprendizaje automático, redes, y proyectos en equipo con Scrum y QA.</p></div></section>
+<section><h2>Idiomas</h2><div class="g"><h3>Español</h3><p>Nativo</p></div><div class="g"><h3>Inglés</h3><p>B2 · First Certificate de Cambridge</p></div></section>
+<section><h2>Otros</h2><div class="g"><h3>Carnet de conducir</h3><p>B</p></div></section>
+</aside></div></body></html>
