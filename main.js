@@ -1,182 +1,259 @@
-/* Portfolio · Daniel Ruiz Figueroa — interacciones (sin dependencias) */
+/* Daniel Ruiz Figueroa · Portfolio — interactions (no dependencies) */
 (function () {
   'use strict';
   var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var store = {
-    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
-    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
-  };
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
 
-  /* ---------- textos en inglés (el español está en el HTML) ---------- */
-  var EN = {
-    'skip': 'Skip to content',
-    'nav.about': 'About', 'nav.projects': 'Projects', 'nav.path': 'Path', 'nav.stack': 'Stack', 'nav.contact': 'Contact',
-    'hero.eyebrow': 'Madrid, Spain',
-    'hero.lead': 'Software developer based in Madrid. I work mostly with C#, C++ and Python.',
-    'hero.cta1': 'See projects', 'hero.cta2': 'Get in touch',
-    'about.title': 'About me',
-    'about.p1': 'I am Daniel, a software developer based in Madrid and a graduate of Universidad Complutense de Madrid.',
-    'about.p2': 'Besides C#, C++ and Python, I am comfortable with Java, JavaScript, HTML and CSS. I like learning, working in a team and solving problems.',
-    'about.p3': 'To do: what I work on now and what I am looking for.',
-    'facts.base': 'Based in', 'facts.lang': 'Languages', 'facts.langv': 'Spanish · English B2', 'facts.focus': 'Focus', 'facts.focusv': 'Software development',
-    'projects.title': 'Projects',
-    'sky.media': 'Demo video · to do', 'sky.badge': 'Featured project',
-    'sky.desc': 'To do: what Skyfall is and the problem it solves.',
-    'sky.b1': 'To do: my role in the project.', 'sky.b2': 'To do: one concrete result or fact.',
-    'sky.tech': 'Technologies · to do', 'sky.demo': 'Demo · to do', 'sky.code': 'Code · to do',
-    'ph.title': 'Next project', 'ph.desc': 'In progress.',
-    'path.title': 'Path',
-    'path.e1d': 'Dates · to do', 'path.e1t': 'To do: role and company', 'path.e1p': 'To do: what I did there, in one line.',
-    'path.u1t': 'BSc in Video Game Development',
-    'path.u1p': 'Universidad Complutense de Madrid. Final degree project: a planetary descent and landing simulator in C#, connected to Microsoft Azure to load its resources from the cloud.',
-    'path.l1d': 'Languages', 'path.l1t': 'English B2 (Cambridge)', 'path.l1p': 'Native Spanish.',
-    'stack.g1': 'Languages', 'stack.g2': 'Tools', 'stack.g3': 'Cloud',
-    'contact.eyebrow': 'Contact', 'contact.title': "Let's talk.", 'contact.copy': 'Copy',
-    'footer.top': 'Back to top ↑'
-  };
-  var COPIED = { es: 'Copiado', en: 'Copied' };
-  var nodes = [].slice.call(document.querySelectorAll('[data-i18n]'));
-  var ES = {};
-  nodes.forEach(function (n) { ES[n.dataset.i18n] = n.innerHTML; });
-  var lang = 'es';
+  $('#year').textContent = new Date().getFullYear();
 
-  function applyLang(next) {
-    lang = next;
-    root.lang = next;
-    nodes.forEach(function (n) {
-      var k = n.dataset.i18n;
-      n.innerHTML = next === 'en' && EN[k] ? EN[k] : ES[k];
-    });
-    document.querySelectorAll('#lang [data-lang]').forEach(function (s) {
-      s.classList.toggle('is-on', s.dataset.lang === next);
-    });
-    store.set('lang', next);
+  /* ---------- reveal on scroll + decoded headings ---------- */
+  var GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/<>+';
+  function decode(el) {
+    var final = el.dataset.text || (el.dataset.text = el.textContent);
+    var start = performance.now(), dur = 700;
+    (function tick(now) {
+      var k = Math.min(1, (now - start) / dur), out = '';
+      for (var i = 0; i < final.length; i++) {
+        out += (i < k * final.length || final[i] === ' ') ? final[i] : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+      }
+      el.textContent = out;
+      if (k < 1) requestAnimationFrame(tick);
+    })(start);
   }
-  var saved = store.get('lang');
-  applyLang(saved === 'en' || saved === 'es' ? saved : ((navigator.language || 'es').slice(0, 2) === 'es' ? 'es' : 'en'));
-
-  document.getElementById('lang').addEventListener('click', function () {
-    var next = lang === 'es' ? 'en' : 'es';
-    if (reduce) return applyLang(next);
-    document.body.classList.add('is-swapping');
-    setTimeout(function () { applyLang(next); document.body.classList.remove('is-swapping'); }, 220);
-  });
-
-  /* ---------- tema claro / oscuro con barrido circular ---------- */
-  document.getElementById('theme').addEventListener('click', function (e) {
-    var next = root.dataset.theme === 'light' ? 'dark' : 'light';
-    var swap = function () { root.dataset.theme = next; store.set('theme', next); };
-    if (reduce || !document.startViewTransition) return swap();
-    root.style.setProperty('--vx', e.clientX + 'px');
-    root.style.setProperty('--vy', e.clientY + 'px');
-    document.startViewTransition(swap);
-  });
-
-  /* ---------- aparición al hacer scroll ---------- */
-  var reveals = document.querySelectorAll('[data-reveal]');
+  var reveals = $$('[data-reveal]');
   if ('IntersectionObserver' in window && !reduce) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+        if (!en.isIntersecting) return;
+        en.target.classList.add('is-in');
+        var h = en.target.querySelector('[data-decode]');
+        if (h) decode(h);
+        io.unobserve(en.target);
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
     reveals.forEach(function (el) { io.observe(el); });
   } else {
     reveals.forEach(function (el) { el.classList.add('is-in'); });
   }
 
-  /* ---------- barra de progreso, cabecera y enlace activo ---------- */
-  var nav = document.getElementById('nav');
-  var links = [].slice.call(document.querySelectorAll('.nav__links a'));
-  var sections = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
-  var lastY = 0, ticking = false;
+  /* ---------- descent telemetry: scroll position as altitude ---------- */
+  var nav = $('#nav'), links = $$('.nav__links a');
+  var phased = $$('[data-phase]');
+  var altNav = $('#alt-nav'), altHud = $('#alt-hud'), mark = $('#hud-mark'), phaseEl = $('#phase'), planet = $('.planet');
+  var ORBIT_KM = 408, lastY = 0, scrollY = 0, progress = 0, lastPhase = '';
   function onScroll() {
-    var y = window.scrollY;
+    scrollY = window.scrollY;
     var max = document.documentElement.scrollHeight - window.innerHeight;
-    root.style.setProperty('--p', max > 0 ? (y / max).toFixed(4) : 0);
-    nav.classList.toggle('is-scrolled', y > 8);
-    nav.classList.toggle('is-hidden', y > lastY && y > 320);
-    lastY = y;
-    var mid = y + window.innerHeight * 0.35, active = -1;
-    sections.forEach(function (s, i) { if (s && s.offsetTop <= mid) active = i; });
-    links.forEach(function (a, i) { a.classList.toggle('is-active', i === active); });
-    ticking = false;
+    progress = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    var alt = Math.round(ORBIT_KM * Math.pow(1 - progress, 1.6));
+    altNav.textContent = alt; altHud.textContent = alt;
+    mark.style.setProperty('--y', (progress * 220).toFixed(1) + 'px');
+    /* the planet's limb rises into view over the second half of the descent */
+    var rise = Math.max(0, (progress - 0.45) / 0.55);
+    planet.style.setProperty('--rise', (rise * rise * window.innerHeight * 0.38).toFixed(1) + 'px');
+
+    nav.classList.toggle('is-scrolled', scrollY > 10);
+    nav.classList.toggle('is-hidden', scrollY > lastY && scrollY > 400);
+    lastY = scrollY;
+
+    var mid = scrollY + window.innerHeight * 0.4, current = phased[0];
+    phased.forEach(function (s) { if (s.offsetTop <= mid) current = s; });
+    if (current.dataset.phase !== lastPhase) {
+      lastPhase = current.dataset.phase;
+      phaseEl.textContent = lastPhase;
+      links.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('href') === '#' + current.id); });
+    }
   }
+  var ticking = false;
   window.addEventListener('scroll', function () {
-    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+    if (!ticking) { ticking = true; requestAnimationFrame(function () { onScroll(); ticking = false; }); }
   }, { passive: true });
+  window.addEventListener('resize', onScroll);
   onScroll();
 
-  /* ---------- foco de luz en las tarjetas ---------- */
-  document.querySelectorAll('.card').forEach(function (card) {
-    card.addEventListener('pointermove', function (e) {
-      var r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  /* ---------- panel tilt ---------- */
+  if (!reduce && window.matchMedia('(hover: hover)').matches) {
+    $$('[data-tilt]').forEach(function (el) {
+      el.addEventListener('pointermove', function (e) {
+        if (e.target.closest('.sim')) return;           /* keep the sketch steady while flying */
+        var r = el.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        el.style.setProperty('--ry', (x * 2.4).toFixed(2) + 'deg');
+        el.style.setProperty('--rx', (-y * 2.4).toFixed(2) + 'deg');
+      });
+      el.addEventListener('pointerleave', function () {
+        el.style.setProperty('--ry', '0deg'); el.style.setProperty('--rx', '0deg');
+      });
     });
-  });
-
-  /* ---------- copiar email ---------- */
-  var copy = document.getElementById('copy');
-  copy.addEventListener('click', function () {
-    var mail = document.querySelector('.contact__mail a').textContent.trim();
-    var done = function () {
-      var prev = copy.innerHTML;
-      copy.textContent = COPIED[lang];
-      copy.classList.add('is-done');
-      setTimeout(function () { copy.innerHTML = prev; copy.classList.remove('is-done'); }, 1600);
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(mail).then(done, function () {});
-  });
-
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  /* ---------- fondo: partículas que caen despacio ---------- */
-  var canvas = document.getElementById('sky');
-  var ctx = canvas.getContext && canvas.getContext('2d');
-  if (!ctx || reduce) return;
-  var W, H, dpr, stars = [], px = 0, py = 0, tx = 0, ty = 0, running = true;
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = window.innerWidth; H = window.innerHeight;
-    canvas.width = W * dpr; canvas.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var n = Math.round(Math.min(140, (W * H) / 11000));
-    stars = [];
-    for (var i = 0; i < n; i++) {
-      var z = Math.random();
-      stars.push({ x: Math.random() * W, y: Math.random() * H, z: z, r: 0.4 + z * 1.3, v: 0.08 + z * 0.5, a: 0.15 + z * 0.55 });
-    }
   }
-  function frame() {
-    if (!running) return;
-    ctx.clearRect(0, 0, W, H);
-    var rgb = getComputedStyle(root).getPropertyValue('--star').trim() || '200,215,255';
-    px += (tx - px) * 0.04; py += (ty - py) * 0.04;
-    for (var i = 0; i < stars.length; i++) {
-      var s = stars[i];
-      s.y += s.v;
-      if (s.y > H + 20) { s.y = -20; s.x = Math.random() * W; }
-      var x = s.x + px * s.z * 24, y = s.y + py * s.z * 24;
-      ctx.fillStyle = 'rgba(' + rgb + ',' + s.a + ')';
-      ctx.beginPath(); ctx.arc(x, y, s.r, 0, 6.2832); ctx.fill();
-      if (s.z > 0.82) {
-        ctx.strokeStyle = 'rgba(' + rgb + ',' + (s.a * 0.35) + ')';
-        ctx.lineWidth = s.r * 0.8;
-        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y - 18 * s.z); ctx.stroke();
+
+  /* ---------- copy email ---------- */
+  var copy = $('#copy');
+  copy.addEventListener('click', function () {
+    if (!navigator.clipboard) return;
+    navigator.clipboard.writeText($('#mail').textContent.trim()).then(function () {
+      copy.textContent = 'Copied'; copy.classList.add('is-done');
+      setTimeout(function () { copy.textContent = 'Copy'; copy.classList.remove('is-done'); }, 1600);
+    }, function () {});
+  });
+
+  /* ---------- star field with depth ---------- */
+  (function () {
+    var canvas = $('#space'), ctx = canvas.getContext && canvas.getContext('2d');
+    if (!ctx) return;
+    var W, H, stars = [], px = 0, py = 0, tx = 0, ty = 0, running = true;
+    function build() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = window.innerWidth; H = window.innerHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(Math.min(260, (W * H) / 6500));
+      stars = [];
+      for (var i = 0; i < n; i++) {
+        var z = Math.pow(Math.random(), 2.2);            /* most stars are far away */
+        stars.push({ x: Math.random() * W, y: Math.random() * H, z: z, r: 0.35 + z * 1.5, a: 0.25 + z * 0.7, t: Math.random() * 6.28, warm: Math.random() < 0.12 });
       }
     }
-    requestAnimationFrame(frame);
-  }
-  window.addEventListener('resize', resize);
-  window.addEventListener('pointermove', function (e) {
-    tx = e.clientX / W - 0.5; ty = e.clientY / H - 0.5;
-  }, { passive: true });
-  document.addEventListener('visibilitychange', function () {
-    var was = running; running = !document.hidden;
-    if (running && !was) requestAnimationFrame(frame);
-  });
-  resize();
-  requestAnimationFrame(frame);
+    function draw(now) {
+      ctx.clearRect(0, 0, W, H);
+      px += (tx - px) * 0.05; py += (ty - py) * 0.05;
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        var y = (s.y - scrollY * (0.05 + s.z * 0.5) + py * s.z * 30) % H; if (y < 0) y += H;
+        var x = s.x + px * s.z * 30;
+        var tw = reduce ? 1 : 0.7 + 0.3 * Math.sin(now / 900 + s.t);
+        ctx.fillStyle = (s.warm ? 'rgba(255,214,160,' : 'rgba(205,225,255,') + (s.a * tw).toFixed(3) + ')';
+        ctx.beginPath(); ctx.arc(x, y, s.r, 0, 6.2832); ctx.fill();
+      }
+    }
+    function loop(now) { if (!running) return; draw(now); requestAnimationFrame(loop); }
+    window.addEventListener('resize', build);
+    window.addEventListener('pointermove', function (e) { tx = e.clientX / W - 0.5; ty = e.clientY / H - 0.5; }, { passive: true });
+    document.addEventListener('visibilitychange', function () {
+      var was = running; running = !document.hidden;
+      if (running && !was && !reduce) requestAnimationFrame(loop);
+    });
+    build();
+    if (reduce) { draw(0); window.addEventListener('scroll', function () { draw(0); }, { passive: true }); }
+    else requestAnimationFrame(loop);
+  })();
+
+  /* ---------- landing sketch (Mission 01) ---------- */
+  (function () {
+    var cv = $('#sim-canvas'); if (!cv || !cv.getContext) return;
+    var c = cv.getContext('2d'), W = cv.width, H = cv.height;
+    var BODIES = {
+      moon: { name: 'Moon', g: 1.62, sky: '#03050a', ground: '#8f97a6', dust: '190,198,210' },
+      mars: { name: 'Mars', g: 3.71, sky: '#120807', ground: '#b5553a', dust: '226,140,104' },
+      x:    { name: 'Planet X', g: 5.4, sky: '#060a12', ground: '#3f7f8c', dust: '127,227,255' }
+    };
+    var START_ALT = 300, SAFE = 4, GROUND = H - 46;
+    var body = BODIES.moon, st, raf = 0, burning = false, last = 0, visible = true;
+    var elAlt = $('#t-alt'), elVel = $('#t-vel'), elFuel = $('#t-fuel'), status = $('#sim-status');
+    var startBtn = $('#sim-start'), burnBtn = $('#sim-burn');
+    var stars = []; for (var i = 0; i < 70; i++) stars.push([Math.random() * W, Math.random() * (GROUND - 20), Math.random()]);
+    var terrain = []; for (var x = 0; x <= W; x += 16) terrain.push(Math.abs(x - W / 2) < 70 ? 0 : (Math.sin(x * 0.045) * 7 + Math.sin(x * 0.13) * 4));
+
+    function reset() { st = { alt: START_ALT, v: -10, fuel: 100, state: 'idle', puffs: [] }; }
+    function say(t, cls) { status.textContent = t; status.className = 'sim__status' + (cls ? ' ' + cls : ''); }
+    function readout() {
+      elAlt.textContent = Math.max(0, st.alt).toFixed(0);
+      elVel.textContent = st.v.toFixed(1);
+      elFuel.textContent = Math.max(0, st.fuel).toFixed(0);
+    }
+    function step(dt) {
+      var a = -body.g;
+      if (burning && st.fuel > 0) {
+        a += body.g * 2.3 + 2.2;
+        st.fuel -= dt * 8.5;
+        st.puffs.push({ x: (Math.random() - 0.5) * 8, y: 0, life: 1 });
+      }
+      st.v += a * dt; st.alt += st.v * dt;
+      if (st.alt <= 0) {
+        st.alt = 0;
+        var speed = Math.abs(st.v);
+        if (speed <= SAFE) { st.state = 'landed'; say('Touchdown on ' + body.name + ' at ' + speed.toFixed(1) + ' m/s. Nicely flown.', 'is-ok'); }
+        else { st.state = 'crashed'; say('Impact at ' + speed.toFixed(1) + ' m/s. The limit is ' + SAFE + ' m/s. Try again.', 'is-bad'); }
+        st.v = 0; burning = false; burnBtn.disabled = true; burnBtn.classList.remove('is-held');
+        startBtn.textContent = 'Fly again';
+      }
+    }
+    function draw() {
+      c.fillStyle = body.sky; c.fillRect(0, 0, W, H);
+      for (var i = 0; i < stars.length; i++) { c.fillStyle = 'rgba(210,225,255,' + (0.2 + stars[i][2] * 0.6) + ')'; c.fillRect(stars[i][0], stars[i][1], 1.4, 1.4); }
+      /* altitude scale */
+      c.strokeStyle = 'rgba(150,180,220,.25)'; c.fillStyle = 'rgba(150,180,220,.6)'; c.font = '10px monospace'; c.lineWidth = 1;
+      for (var m = 0; m <= START_ALT; m += 50) {
+        var ty = GROUND - (m / START_ALT) * (GROUND - 40);
+        c.beginPath(); c.moveTo(14, ty); c.lineTo(m % 100 === 0 ? 30 : 22, ty); c.stroke();
+        if (m % 100 === 0) c.fillText(m, 34, ty + 3);
+      }
+      /* terrain and pad */
+      c.fillStyle = body.ground; c.beginPath(); c.moveTo(0, H);
+      for (var k = 0; k < terrain.length; k++) c.lineTo(k * 16, GROUND - terrain[k]);
+      c.lineTo(W, H); c.closePath(); c.globalAlpha = 0.9; c.fill(); c.globalAlpha = 1;
+      c.fillStyle = '#7fe3ff'; c.fillRect(W / 2 - 46, GROUND - 2, 92, 2);
+      /* lander */
+      var y = GROUND - 18 - (st.alt / START_ALT) * (GROUND - 58), x = W / 2;
+      if (st.state === 'crashed') {
+        c.fillStyle = 'rgba(255,196,107,.9)';
+        for (var d = 0; d < 9; d++) { c.beginPath(); c.arc(x + Math.cos(d * 0.7) * 22, GROUND - 8 - Math.abs(Math.sin(d * 1.3)) * 18, 3 + (d % 3), 0, 6.3); c.fill(); }
+      } else {
+        for (var p = st.puffs.length - 1; p >= 0; p--) {
+          var q = st.puffs[p]; q.y += 2.4; q.life -= 0.06;
+          if (q.life <= 0) { st.puffs.splice(p, 1); continue; }
+          c.fillStyle = 'rgba(255,196,107,' + q.life.toFixed(2) + ')';
+          c.beginPath(); c.arc(x + q.x, y + 20 + q.y, 4 * q.life + 1, 0, 6.3); c.fill();
+        }
+        c.strokeStyle = '#e9eef7'; c.lineWidth = 2; c.fillStyle = '#0d1320';
+        c.beginPath(); c.moveTo(x - 12, y + 6); c.lineTo(x - 20, y + 18); c.moveTo(x + 12, y + 6); c.lineTo(x + 20, y + 18); c.stroke();
+        c.beginPath(); c.moveTo(x - 24, y + 18); c.lineTo(x - 16, y + 18); c.moveTo(x + 16, y + 18); c.lineTo(x + 24, y + 18); c.stroke();
+        c.beginPath(); c.rect(x - 13, y - 8, 26, 16); c.fill(); c.stroke();
+        c.beginPath(); c.arc(x, y - 8, 9, Math.PI, 0); c.fill(); c.stroke();
+        c.fillStyle = '#7fe3ff'; c.fillRect(x - 3, y - 12, 6, 4);
+        if (st.state === 'landed') { c.fillStyle = 'rgba(' + body.dust + ',.25)'; c.beginPath(); c.ellipse(x, GROUND, 60, 6, 0, 0, 6.3); c.fill(); }
+      }
+      c.fillStyle = 'rgba(150,180,220,.7)'; c.font = '10px monospace';
+      c.fillText(body.name.toUpperCase() + '  G ' + body.g.toFixed(2) + ' M/S2', W - 170, 22);
+    }
+    function frame(now) {
+      var dt = Math.min(0.05, (now - last) / 1000); last = now;
+      if (st.state === 'flying') { step(dt); readout(); }
+      draw();
+      raf = (st.state === 'flying' && visible) ? requestAnimationFrame(frame) : 0;
+    }
+    function start() {
+      reset(); st.state = 'flying'; burning = false;
+      burnBtn.disabled = false; startBtn.textContent = 'Restart';
+      say('Descending toward ' + body.name + '. Hold to burn.');
+      last = performance.now(); if (!raf) raf = requestAnimationFrame(frame);
+    }
+    function setBurn(on) {
+      if (st.state !== 'flying') return;
+      burning = on; burnBtn.classList.toggle('is-held', on);
+    }
+    startBtn.addEventListener('click', start);
+    burnBtn.addEventListener('pointerdown', function (e) { e.preventDefault(); setBurn(true); });
+    ['pointerup', 'pointerleave', 'pointercancel', 'blur'].forEach(function (ev) { burnBtn.addEventListener(ev, function () { setBurn(false); }); });
+    $('#sim').addEventListener('keydown', function (e) {
+      if (e.code === 'Space' && st.state === 'flying') { e.preventDefault(); setBurn(true); }
+    });
+    $('#sim').addEventListener('keyup', function (e) { if (e.code === 'Space') { e.preventDefault(); setBurn(false); } });
+    $$('.seg button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        $$('.seg button').forEach(function (o) { o.classList.toggle('is-on', o === b); });
+        body = BODIES[b.dataset.body]; reset(); burnBtn.disabled = true; startBtn.textContent = 'Start descent';
+        say(body.name + ' selected. Gravity ' + body.g.toFixed(2) + ' m/s².'); readout(); draw();
+      });
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) {
+        visible = en[0].isIntersecting;
+        if (visible && st.state === 'flying' && !raf) { last = performance.now(); raf = requestAnimationFrame(frame); }
+      }).observe(cv);
+    }
+    reset(); readout(); draw();
+  })();
 })();
