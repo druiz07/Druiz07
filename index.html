@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daniel Ruiz Figueroa · Computer Engineer</title>
-  <meta name="description" content="Daniel Ruiz Figueroa, Computer Engineer based in Madrid. Software engineering pointed at the space sector.">
+  <meta name="description" content="Daniel Ruiz Figueroa, Computer Engineer based in Madrid. Builder of SKYFALL, re-entry risk maps for space debris, and a spacecraft descent and landing simulator.">
   <meta name="theme-color" content="#04060b">
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Daniel Ruiz Figueroa · Computer Engineer">
@@ -68,8 +68,9 @@
           <span class="row"><span style="--d:3">pointed at <em>space.</em></span></span>
         </h1>
         <p class="hero__lead in" style="--d:5">
-          I'm Daniel Ruiz Figueroa. I build software in C#, C++ and Python, I wrote a spacecraft
-          descent and landing simulator for my thesis, and I'm steering my career toward the space sector.
+          I'm Daniel Ruiz Figueroa. I built SKYFALL, which maps where re-entering space debris is likely
+          to fall, and a spacecraft descent and landing simulator for my thesis. I'm steering my career
+          toward the space sector.
         </p>
         <div class="hero__cta in" style="--d:6">
           <a class="btn btn--solid" href="#missions"><span>Explore missions</span>
@@ -137,18 +138,18 @@
             heading: software for the space sector.
           </p>
           <p data-reveal>
-            For my thesis I designed and built a spacecraft descent and landing simulator on my own: a flight
-            model with gravity, wind, heat and fuel, configurable missions, and assets delivered from the cloud.
-            It is the project that best represents my profile, and the direction I want to keep following.
+            Two projects set that heading. For my thesis I designed and built a spacecraft descent and landing
+            simulator on my own. More recently I built SKYFALL, an open-source tool that turns official
+            re-entry warnings into probability maps and checks them against confirmed impact points.
           </p>
           <p data-reveal>
-            Day to day I work in C#, C++ and Python, and I'm comfortable in Java and on the web stack. I write
-            unit tests, live in version control, and have shipped projects both solo and in agile teams.
+            Day to day I work at Qaracter on the technical side of the Calypso platform. I write in Python, C#,
+            C++ and Java, test what I ship, and care about saying clearly what a model can and cannot do.
           </p>
           <ul class="stats" data-reveal>
-            <li><b>C# · C++ · Python</b><span>Core languages</span></li>
+            <li><b>Python · C# · C++ · Java</b><span>Core languages</span></li>
             <li><b>Spanish · English B2</b><span>Working languages</span></li>
-            <li><b>Simulation · Cloud</b><span>Where I've gone deepest</span></li>
+            <li><b>Simulation · Orbital data</b><span>Where I've gone deepest</span></li>
           </ul>
         </div>
       </div>
@@ -160,8 +161,44 @@
         <span class="head__n">02</span><h2 data-decode>Missions</h2><span class="head__rule"></span><span class="head__tag">Selected work</span>
       </header>
 
-      <!-- Mission 01 · Thesis simulator -->
+      <!-- Mission 01 · SKYFALL -->
       <article class="mission panel" data-reveal data-tilt>
+        <div class="mission__media">
+          <video class="clip" src="media/skyfall.mp4" poster="img/skyfall-poster.jpg" controls playsinline preload="none" aria-label="SKYFALL demo: re-entry zones for NORAD 46698 on a 3D globe"></video>
+          <div class="replay" id="replay">
+            <div class="replay__head">
+              <span>Warning replay · NORAD 46698 (Starlink)</span>
+              <button type="button" class="btn btn--sm" id="replay-play">Play</button>
+            </div>
+            <p class="replay__big"><b id="rp-area">376</b><span>million km²<br>99 % zone</span><em id="rp-delta">First warning, 4 days out</em></p>
+            <ol class="replay__bars" id="replay-bars"></ol>
+            <p class="sim__note">Seven official warnings for one satellite. Each one narrows the zone; the confirmed impact point fell inside the last.</p>
+          </div>
+        </div>
+        <div class="mission__body">
+          <p class="mission__meta"><span class="chip chip--on">Mission 01</span><span>2026 · Open source (MIT)</span></p>
+          <h3>SKYFALL</h3>
+          <p class="mission__sum">
+            Where will falling space debris come down, and how much sky should be closed while we wait?
+            SKYFALL turns official re-entry warnings for dead satellites and rocket stages into probability
+            maps on a 3D globe, and compares them with the airspace closures used today.
+          </p>
+          <ul class="specs">
+            <li><b>Pipeline</b>Reads TIP re-entry warnings from Space-Track, propagates each orbit with SGP4, simulates thousands of falls and draws the zones that hold 90, 95 and 99 % of them on a 0.5° grid.</li>
+            <li><b>Learned error</b>Re-entry times are sampled from how wrong a year of past warnings really was (about 4,450 warnings, 680 objects), not evenly inside the official window, which holds only about 85 % of real re-entries.</li>
+            <li><b>Validation</b>Trained on even catalogue numbers, examined on odd ones: 100 warnings issued under 6 hours before re-entry, each checked against the confirmed impact point.</li>
+            <li><b>Result</b>For about the same closed sky, the 95 % zone caught 95 of 100 real impacts against 87 for the 120 km strip from the EASA bulletins; the 90 % zone caught 89 against 84 for the 70 km strip.</li>
+            <li><b>Limits</b>The 99 % zone catches about 96 % in practice, and debris spread is an assumption. The project documents both.</li>
+          </ul>
+          <ul class="tags"><li>Python</li><li>FastAPI</li><li>SGP4</li><li>Monte Carlo</li><li>React</li><li>TypeScript</li><li>CesiumJS</li></ul>
+          <!-- TODO Daniel: add the public repository link here once SKYFALL is on GitHub:
+               <div class="mission__links"><a class="tlink" href="https://github.com/..." target="_blank" rel="noopener">Source on GitHub<span>↗</span></a></div> -->
+          <p class="sim__note">Built in a few days with Claude Code. Warning data from Space-Track.org; globe by CesiumJS.</p>
+        </div>
+      </article>
+
+      <!-- Mission 02 · Thesis simulator -->
+      <article class="mission mission--flip panel" data-reveal data-tilt>
         <div class="mission__media">
           <div class="sim" id="sim">
             <canvas id="sim-canvas" width="640" height="420" aria-label="Interactive landing sketch"></canvas>
@@ -184,7 +221,7 @@
           </div>
         </div>
         <div class="mission__body">
-          <p class="mission__meta"><span class="chip chip--on">Mission 01</span><span>Bachelor's thesis · 2024 · Solo</span></p>
+          <p class="mission__meta"><span class="chip chip--on">Mission 02</span><span>Bachelor's thesis · 2024 · Solo · Graded 8.9 / 10</span></p>
           <h3>Spacecraft Descent &amp; Landing Simulator</h3>
           <p class="mission__sum">
             A simulator of the last minutes of a mission: fly a lander down to the surface of the Moon, Mars
@@ -204,26 +241,6 @@
         </div>
       </article>
 
-      <!-- Mission 02 · Skyfall -->
-      <article class="mission mission--flip panel" data-reveal data-tilt>
-        <div class="mission__media">
-          <!-- TODO Daniel: replace this block with the Skyfall demo.
-               Video: <video src="media/skyfall.mp4" poster="img/skyfall.jpg" controls playsinline preload="none"></video>
-               Image: <img src="img/skyfall.jpg" alt="Skyfall"> -->
-          <div class="slot">
-            <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
-            <span>Demo footage · uplink pending</span>
-          </div>
-        </div>
-        <div class="mission__body">
-          <p class="mission__meta"><span class="chip chip--on">Mission 02</span><span>In progress</span></p>
-          <h3>Skyfall</h3>
-          <!-- TODO Daniel: real description of Skyfall (what it does, your role, stack, links). -->
-          <p class="mission__sum pending">Mission brief incoming. The write-up and demo footage for Skyfall are being prepared.</p>
-          <ul class="tags"><li class="pending">Stack · to be published</li></ul>
-        </div>
-      </article>
-
       <!-- Future missions -->
       <div class="slots">
         <!-- TODO Daniel: each slot becomes a project. Copy the structure of Mission 01 when ready. -->
@@ -237,12 +254,21 @@
       <header class="head" data-reveal>
         <span class="head__n">03</span><h2 data-decode>Flight log</h2><span class="head__rule"></span><span class="head__tag">Background</span>
       </header>
-      <!-- TODO Daniel: add professional experience entries here (role, company, dates, one line). -->
       <ol class="log">
+        <li data-reveal>
+          <time>2025 — Now</time>
+          <div><h3>Qaracter · Madrid</h3>
+          <p>Programming on the technical side of the Calypso platform, working with Java and Oracle SQL.</p></div>
+        </li>
+        <li data-reveal>
+          <time>2026</time>
+          <div><h3>SKYFALL</h3>
+          <p>Designed, built and released as open source: re-entry risk maps from real warnings, validated against confirmed impacts.</p></div>
+        </li>
         <li data-reveal>
           <time>2024</time>
           <div><h3>Thesis: Spacecraft Descent &amp; Landing Simulator</h3>
-          <p>Designed, built and defended solo. Flight dynamics, mission configuration and Azure-backed asset delivery.</p></div>
+          <p>Designed, built and defended solo, graded 8.9 out of 10. Flight dynamics, mission configuration and Azure-backed asset delivery.</p></div>
         </li>
         <li data-reveal>
           <time>2019 — 2024</time>
@@ -263,10 +289,10 @@
         <span class="head__n">04</span><h2 data-decode>Systems</h2><span class="head__rule"></span><span class="head__tag">Toolchain</span>
       </header>
       <div class="systems">
-        <div class="panel sys" data-reveal style="--i:0"><h3>Languages</h3><ul class="tags"><li>C#</li><li>C++</li><li>C</li><li>Python</li><li>Java</li><li>JavaScript</li><li>HTML / CSS</li></ul></div>
-        <div class="panel sys" data-reveal style="--i:1"><h3>Simulation</h3><ul class="tags"><li>Unity</li><li>Rigid-body physics</li><li>Runtime asset bundles</li></ul></div>
-        <div class="panel sys" data-reveal style="--i:2"><h3>Cloud &amp; data</h3><ul class="tags"><li>Microsoft Azure</li><li>Blob Storage</li><li>REST APIs</li><li>SQLite</li></ul></div>
-        <div class="panel sys" data-reveal style="--i:3"><h3>Tooling &amp; practice</h3><ul class="tags"><li>Git</li><li>Visual Studio</li><li>VS Code</li><li>Jupyter</li><li>Unit testing</li><li>Scrum</li></ul></div>
+        <div class="panel sys" data-reveal style="--i:0"><h3>Languages</h3><ul class="tags"><li>Python</li><li>C#</li><li>C++</li><li>C</li><li>Java</li><li>TypeScript</li><li>JavaScript</li><li>SQL</li></ul></div>
+        <div class="panel sys" data-reveal style="--i:1"><h3>Space &amp; simulation</h3><ul class="tags"><li>SGP4 orbit propagation</li><li>Monte Carlo methods</li><li>Rigid-body physics</li><li>Unity</li><li>CesiumJS</li></ul></div>
+        <div class="panel sys" data-reveal style="--i:2"><h3>Backend, web &amp; cloud</h3><ul class="tags"><li>FastAPI</li><li>REST APIs</li><li>React</li><li>Microsoft Azure</li><li>Oracle SQL</li><li>SQLite</li></ul></div>
+        <div class="panel sys" data-reveal style="--i:3"><h3>Tooling &amp; practice</h3><ul class="tags"><li>Git</li><li>pytest</li><li>Unit testing</li><li>Visual Studio</li><li>VS Code</li><li>Jupyter</li><li>Scrum</li></ul></div>
       </div>
     </section>
 

@@ -140,7 +140,44 @@
     else requestAnimationFrame(loop);
   })();
 
-  /* ---------- landing sketch (Mission 01) ---------- */
+  /* ---------- SKYFALL warning replay (figures from the project's results) ---------- */
+  (function () {
+    var list = $('#replay-bars'); if (!list) return;
+    var STEPS = [['± 23 h', 376], ['± 12 h', 351], ['± 10 h', 315], ['± 4 h', 196], ['± 2 h', 112], ['± 1 h', 48], ['± 43 min', 35]];
+    var area = $('#rp-area'), delta = $('#rp-delta'), play = $('#replay-play'), items = [], shown = 376, timer = 0, tween = 0;
+    STEPS.forEach(function (s, i) {
+      var li = document.createElement('li');
+      li.innerHTML = '<button type="button" aria-label="Warning ' + s[0] + ', ' + s[1] + ' million square kilometres"><span>' + s[0] + '</span><i style="--w:' + (s[1] / 376 * 100).toFixed(1) + '%"></i><span>' + s[1] + '</span></button>';
+      li.firstChild.addEventListener('click', function () { stop(); select(i); });
+      list.appendChild(li); items.push(li);
+    });
+    function select(i) {
+      items.forEach(function (li, k) { li.classList.toggle('is-on', k === i); li.classList.toggle('is-past', k < i); });
+      var target = STEPS[i][1], from = shown, t0 = performance.now();
+      cancelAnimationFrame(tween);
+      (function tick(now) {
+        var k = reduce ? 1 : Math.min(1, (now - t0) / 500);
+        shown = Math.round(from + (target - from) * (1 - Math.pow(1 - k, 3)));
+        area.textContent = shown;
+        if (k < 1) tween = requestAnimationFrame(tick);
+      })(t0);
+      delta.textContent = i === 0 ? 'First warning, 4 days out' : '−' + Math.round((1 - target / 376) * 100) + ' % vs the first warning';
+    }
+    function stop() { clearInterval(timer); timer = 0; play.textContent = 'Play'; }
+    function run() {
+      if (timer) return stop();
+      var i = 0; select(0); play.textContent = 'Pause';
+      timer = setInterval(function () { i++; if (i >= STEPS.length) return stop(); select(i); }, 950);
+    }
+    play.addEventListener('click', run);
+    select(0);
+    if ('IntersectionObserver' in window && !reduce) {
+      var once = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { once.disconnect(); run(); } }, { threshold: 0.6 });
+      once.observe(list);
+    }
+  })();
+
+  /* ---------- landing sketch (Mission 02) ---------- */
   (function () {
     var cv = $('#sim-canvas'); if (!cv || !cv.getContext) return;
     var c = cv.getContext('2d'), W = cv.width, H = cv.height;

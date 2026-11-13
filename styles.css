@@ -302,6 +302,22 @@ main, .footer { position: relative; z-index: 1; }
 .btn--burn.is-held::before { transform: none; }
 .sim__note { font-size: .74rem; color: var(--dim); line-height: 1.5; }
 
+/* ---------- SKYFALL clip + warning replay ---------- */
+.mission__media > video.clip { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: #000; border-bottom: 1px solid var(--line); }
+.replay { display: grid; gap: 14px; padding: 18px; }
+.replay__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; font: 400 .66rem var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.replay__big { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 6px 14px; }
+.replay__big b { font: 700 clamp(2.6rem, 6vw, 3.8rem)/.9 var(--display); font-stretch: 116%; letter-spacing: -.03em; color: var(--signal); font-variant-numeric: tabular-nums; min-width: 3ch; }
+.replay__big span { font: 400 .66rem/1.5 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.replay__big em { margin-left: auto; font: 500 .74rem var(--mono); letter-spacing: .06em; color: var(--ember); }
+.replay__bars { display: grid; gap: 5px; }
+.replay__bars button { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr) 2.6rem; align-items: center; gap: 10px; width: 100%; padding: 3px 0; font: 400 .7rem var(--mono); color: var(--dim); text-align: left; transition: color .25s; }
+.replay__bars i { display: block; height: 10px; border-radius: 2px; background: var(--line-2); width: var(--w); transform-origin: 0 50%; transition: background .35s, box-shadow .35s, transform .9s var(--ease); }
+.replay__bars button:hover, .replay__bars .is-on button { color: var(--text); }
+.replay__bars .is-past i { background: rgba(127, 227, 255, .35); }
+.replay__bars .is-on i { background: var(--signal); box-shadow: 0 0 14px rgba(127, 227, 255, .6); }
+.replay__bars span:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+
 /* ---------- flight log ---------- */
 .log { position: relative; display: grid; padding-left: 26px; }
 .log::before { content: ""; position: absolute; left: 4px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(to bottom, var(--signal), var(--line) 30%, var(--line)); }
