@@ -1,20 +1,31 @@
-# About Me
+# Daniel Ruiz Figueroa
 
-Hello there!🎉  I'm Daniel, an enthusiastic developer specializing in game and software development based in Madrid, Spain. I graduated from Universidad Complutense de Madrid (UCM) with a degree in Game Development. With four years of hands-on experience in project development, I'm now eagerly seeking new opportunities within the software industry.
+**Computer Engineer · Madrid, Spain · heading for the space sector**
 
-I'm passionate about learning, thrive in teamwork, efficient, and excel at problem-solving. I am proficient in programming languages such as C#, C++, and Python, and have some familiarity with JavaScript, Java, HTML, and CSS.
+I build software in Python, C#, C++ and Java. By day I'm a Calypso developer at Qaracter, working on FX trade confirmations. On my own time I work on space software.
 
-It's worth noting I have a B2 level in English, ensuring smooth communication for effective collaboration on international projects. I'm prepared to tackle new challenges and continuously expand my skill set.
+**[Visit my website →](https://druiz07.github.io/Druiz07/)**
 
-<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeDlkN285bGNpaHZwaXl2cnI1am4ybm9haHprY29mc3RtbTVsODZpayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HN4JACm508pPtI17ZY/giphy.gif" width="200" />
+## Projects
 
+### [SKYFALL](https://github.com/druiz07/skyfall)
+Where will falling space debris come down, and how much sky should be closed while we wait? SKYFALL turns official re-entry warnings into 90, 95 and 99 % probability zones on a 3D globe and compares them with the airspace closures used today. Tested on 100 real warnings the model had never seen, its 95 % zone contained 95 confirmed impact points, against 87 for the 120 km reference strip.
 
+`Python` `FastAPI` `SGP4` `Monte Carlo` `React` `TypeScript` `CesiumJS`
 
+### [Spacecraft Descent and Landing Simulator](https://github.com/druiz07/TFGSimulator)
+My final degree project, graded 8.9 out of 10. Fly a lander down to the Moon, Mars or a configurable planet with gravity, wind, fuel burn, a heat shield and a parachute. Vehicle models are streamed at runtime from Microsoft Azure Blob Storage.
 
-Looking forward on connecting with you! 🌍👇
+`C#` `Unity` `Azure Blob Storage` `REST`
 
-**Contact Information:**
+## Stack
+
+- **Languages:** Python, C#, C++, C, Java, TypeScript, SQL
+- **Space and simulation:** SGP4 orbit propagation, Monte Carlo methods, rigid-body physics, Unity, CesiumJS
+- **Backend and cloud:** FastAPI, REST APIs, Microsoft Azure, Oracle SQL
+
+## Contact
+
 - Email: daniel.ruiz.figueroa01@gmail.com
-- GitHub: https://github.com/Druiz07
-- LinkedIn: www.linkedin.com/in/daniel-ruiz-figueroa-developer
-- Portfolio: https://druiz07.github.io/Druiz07/
+- LinkedIn: [daniel-ruiz-figueroa-developer](https://www.linkedin.com/in/daniel-ruiz-figueroa-developer/)
+- Portfolio: [druiz07.github.io/Druiz07](https://druiz07.github.io/Druiz07/)
