@@ -44,7 +44,7 @@ DATA = {
         "Generate the confirmation documents with the specific data each product requires.",
         "Manage delivery across confirmation channels: email, fax, TradeServ and SWIFT."],
         k="Calypso · Java · Oracle SQL")],
-  proj=[dict(t="SKYFALL", s="Re-entry risk maps for space debris · open source (MIT)", w="2026", b=[
+  proj=[dict(t="SKYFALL", s="Re-entry risk maps for space debris · open source (MIT) · github.com/druiz07/skyfall", w="2026", b=[
         "Turns official re-entry warnings (TIP messages from Space-Track) into 90, 95 and 99 % probability zones on a 3D globe, and compares them with the airspace closure strips from the EASA bulletins.",
         "Samples re-entry times from the measured error of a year of past warnings (about 4,450 warnings, 680 objects), propagates each orbit with SGP4 and scatters debris with Monte Carlo runs on a 0.5° grid.",
         "Validated on 100 real warnings the model had never seen: the 95 % zone contained 95 confirmed impact points, against 87 for the 120 km strip, for about the same closed area."],
@@ -77,7 +77,7 @@ DATA = {
         "Generación de los documentos de confirmación con la información específica de cada producto.",
         "Gestión del envío por las distintas vías de confirmación: email, fax, TradeServ y SWIFT."],
         k="Calypso · Java · Oracle SQL")],
-  proj=[dict(t="SKYFALL", s="Mapas de riesgo de reentrada de basura espacial · código abierto (MIT)", w="2026", b=[
+  proj=[dict(t="SKYFALL", s="Mapas de riesgo de reentrada de basura espacial · código abierto (MIT) · github.com/druiz07/skyfall", w="2026", b=[
         "Convierte los avisos oficiales de reentrada (mensajes TIP de Space-Track) en zonas de probabilidad del 90, 95 y 99 % sobre un globo 3D y las compara con las franjas de cierre de espacio aéreo de los boletines de EASA.",
         "Muestrea la hora de reentrada a partir del error medido en un año de avisos anteriores (unos 4.450 avisos, 680 objetos), propaga cada órbita con SGP4 y dispersa los fragmentos con simulaciones de Monte Carlo en una rejilla de 0,5°.",
         "Validado con 100 avisos reales que el modelo no había visto: la zona del 95 % contuvo 95 puntos de impacto confirmados, frente a 87 de la franja de 120 km, con un área cerrada similar."],
