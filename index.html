@@ -1,233 +1,255 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="img/mando.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="index.css">
-    <style>   
-        @keyframes backgroundChange {
-            0% { background-color: #1e90ff; }   /* Azul */
-            100% { background-color: #1e90ff; } /* Azul (cierra el ciclo) */
-        }
-
-        body {
-            animation: backgroundChange 20s infinite;
-            background-color: #1e90ff; /* color inicial */
-        }
-
-        section.banner {
-            background-color: transparent;  /* Asegúrate de que sea transparente */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel Ruiz Figueroa · Desarrollador de software</title>
+  <meta name="description" content="Portfolio de Daniel Ruiz Figueroa, desarrollador de software en Madrid.">
+  <meta name="theme-color" content="#0a0c10">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Daniel Ruiz Figueroa · Desarrollador de software">
+  <meta property="og:description" content="Portfolio de Daniel Ruiz Figueroa, desarrollador de software en Madrid.">
+  <meta property="og:url" content="https://druiz07.github.io/Druiz07/">
+  <meta property="og:image" content="https://druiz07.github.io/Druiz07/img/og.png">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    /* Aplica el tema guardado antes de pintar, para evitar parpadeos */
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      else if (window.matchMedia('(prefers-color-scheme: light)').matches) document.documentElement.dataset.theme = 'light';
+    } catch (e) {}
+  </script>
 </head>
 <body>
-    <section class="banner" id="sec">
-       
-            <div class="sidebar">
-                <a class="uppercase" href="#">Sobre mí</a>
-                <a class="uppercase" href="#skills">Skills</a>
-                <a class="uppercase" href="#projects">Proyectos</a>
-                <a class="uppercase" href="#social">Socials</a>
-            </div>
-        
-        <div class="content" id="me">
-            <!-- <div class="add-space5"></div> -->
-            <div class="name">
-                <img class="img-sphere" src="img/fotoGraduacion.jpg">
-                <div class="add-space5"></div>
-                <div class="info">
-                    <p class="important golden-color">Daniel Ruiz Figueroa</p>
-                </div>
-                   
-               
-                <p>
-                    Soy un apasionado desarrollador de juegos y software, residente en la ciudad de Madrid, España.
-                    Cuento con un graduado en la <strong>Universidad Complutense de Madrid (UCM)</strong> con un título en Desarrollo de Videojuegos,
-                    con cuatro años de experiencia práctica llevando a cabo proyectos innovadores en distintos lenguajes de programacion.   
-                    Ahora, con gran entusiasmo, busco nuevas y emocionantes oportunidades para aportar mis habilidades y seguir creciendo en la industria del desarrollo.
-                </p>
-                
+  <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+  <div class="progress" aria-hidden="true"><span></span></div>
+  <canvas id="sky" aria-hidden="true"></canvas>
 
-                <div class="add-space5"></div>
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top" aria-label="Inicio">
+      <span class="nav__mark">DR</span>
+      <span class="nav__name">Daniel Ruiz</span>
+    </a>
+    <nav class="nav__links" aria-label="Secciones">
+      <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+      <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+      <a href="#trayectoria" data-i18n="nav.path">Trayectoria</a>
+      <a href="#stack" data-i18n="nav.stack">Stack</a>
+      <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+    </nav>
+    <div class="nav__tools">
+      <button class="tool" id="lang" type="button" aria-label="Cambiar idioma">
+        <span data-lang="es">ES</span><i>/</i><span data-lang="en">EN</span>
+      </button>
+      <button class="tool tool--icon" id="theme" type="button" aria-label="Cambiar tema">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </header>
 
-                <h2>CONTACTO</h2>
-                <h4>daniel.ruiz.figueroa01@gmail.com</h4>
-
-                <div class="add-space3"></div>
-
-                <h2>Descarga mi Currículum!</h2>
-                <a href="img/CV_DanielRuiz.pdf" target="_blank">
-                    <button class="curriculum">Currículum</button>
-                  </a>
-            </div>
-            <!-- <div class="add-space5"></div> -->
-            <div class="add-space10"></div>
-            <div class="add-space10" id="skills"></div>
-            <div class="skills"></div>
-            <div class="label-grid-container-bg animation-appear">
-                <div class="label-grid-bg">
-                    <div class="add-space5"></div>
-                    <h2 class="title uppercase">Skills</h2>
-                    <div class="image-grid-container">
-                        <h2 class="electric-blue-color">Programming Languages</h2>
-                        <div class="image-grid">
-                            <img class="img-responsive" src="img/coding/c.png" alt="C">
-                            <img class="img-responsive" src="img/coding/cpp.png" alt="C++">
-                            <img class="img-responsive" src="img/coding/csharp.png" alt="CSharp">
-                            <img class="img-responsive" src="img/coding/js.png" alt="JavaScript">
-                            <img class="img-responsive" src="img/coding/java.png" alt="Java">
-                            <img class="img-responsive" src="img/coding/python.png" alt="Python">
-                            <img class="img-responsive" src="img/coding/html.png" alt="HTML">
-                            <img class="img-responsive" src="img/coding/css.png" alt="CSS">
-                        </div>                  
-                    </div>
-                    <div class="image-grid-container">
-                        <h2 class="electric-blue-color">Software Applications</h2>
-                        <div class="image-grid">
-                            <img class="img-responsive" src="img/softwareApps/audacity.png" alt="Audacity">
-                            <img class="img-responsive" src="img/softwareApps/anaconda.png" alt="Anaconda">
-                            <img class="img-responsive" src="img/softwareApps/studio.png" alt="Visual Studio">
-                            <img class="img-responsive" src="img/softwareApps/code.png" alt="Visual Studio Code">
-                            <img class="img-responsive" src="img/softwareApps/android.png" alt="Android Studio">
-                            <img class="img-responsive" src="img/softwareApps/audition.png" alt="Adobe Audition">
-                            <img class="img-responsive" src="img/softwareApps/photoshop.png" alt="Adobe Photoshop">
-                            <img class="img-responsive" src="img/softwareApps/blender.png" alt="Blender">
-                            <img class="img-responsive" src="img/softwareApps/fmod.png" alt="FMOD">
-                        </div>
-                    </div>    
-                    <div class="image-grid-container">
-                        <h2 class="electric-blue-color">Game Engines</h2>
-                        <div class="image-grid">
-                            <img class="img-responsive" src="img/motores/unity.png" alt="Unity">
-                            <img class="img-responsive" src="img/motores/construct.png" alt="Construct">
-                            <img class="img-responsive" src="img/motores/ue.png" alt="Unreal Engine">
-                        </div>
-                    </div>
-                    <div class="add-space10"></div>
-                </div>
-            </div>
-
-            <div class="add-space10"></div><div class="add-space10"></div><div class="add-space10"></div>
-
-            <div class="add-space10" id="projects"></div>
-            <div class="projects animation-appear">
-                <div class="add-space5"></div>
-                <div class>
-                    <h2 class="title">PROYECTOS</h2>
-                    <div class="add-space5"></div>
-                    <h2 class="electric-blue-color">Landing Descent Simulator (TFG)</h2>
-                    <p>El objetivo del TFG es el diseño de un <span class="bold"> simulador de descenso y aterrizaje planetario</span> que minimizase la carga de recursos mediande computacion en la nube. 
-                        <br><br>Para ello necesitabamos desarrollar un simulador capaz de conectarse a tiempo real con un servidor ( En este caso Microsoft Aure) para almacenar y descargar los modelos.
-                        Este TFG fue realizado unicamente <span class="bold">por mi </span>.</p>
-                      <p>Simulación en 2 dimensiones <span class="bold"> para PC</span> sobre el descenso y aterrizaje en distintos cuerpos planetarios  <span class="bold">programado en C# en el motor Unity , conectado a un servidor
-                        de <span class="bold">Microsoft Azure</span></span>.</p>
-                        <div class="add-space5"></div>
-                    <div class="foto-mix">
-                        <section>
-                            <img src="img/projects/TFG.png">
-                            <img src="img/coding/csharp.png">
-                            <img src="img/motores/unity.png">
-                  
-                        </section>
-                    </div>
-                    <div class="add-space5"></div>
-                    <p>Este proyecto fue desarrollado en <span class="electric-blue-color">C#</span> haciendo uso de Unity y el servidor de Azure, y fue realizado por mí únicamente.</p>
-                    <div class="add-space5"></div>
-                    <div class="row-buttons centered-button">
-                        <a href="https://github.com/druiz07/TFGSimulator">
-                          <button>Check Code</button>
-                        </a>
-                    </div>
-
-
-                    <h2 class="electric-blue-color">Crunch Trough Hell</h2>
-                    <p>LoveEngine es un <span class="bold">videojuego 3D desarrollado en C++</span> y en el <span class="bold">motor propio Love Engine</span> en el que el jugador es un samurai que trata de vencer el infierno en el que se encuentra luchando con distintos demonios y recuperar asi a su amada.</p>
-                    <p>Para la creación del motor se hizo uso de <span class="bold">Ogre3D</span> (Render), <span class="bold">FMOD</span> (Audio), <span class="bold">Bullet</span> (Físicas) y <span class="bold">Lua</span> (Lenguaje de scripting). </p>
-                        <div class="add-space5"></div>
-                    <div class="foto-mix">
-                        <section>
-                            <img src="img/projects/Crunch.png">
-                            <img src="img/coding/cpp.png">
-                            <img src="img/coding/lua.png">                 
-                        </section>
-                    </div>
-                    <div class="add-space5"></div>
-                    <div class="add-space5"></div>
-                    <div class="row-buttons">                       
-                        <a href="https://github.com/Triturados">
-                          <button>Check Code</button>
-                        </a>
-                    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                </div>
-
-                <div class="add-space5"></div>
-                <div class="bar"></div>
-                <div class="add-space5"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
-                <a href="projects.html">
-                    <button class="button3">MAS PROYECTOS</button>
-                  </a>
-                
-                <div class="add-space10"></div>
-            </div>        
-            <div class="add-space10" id="social"></div>
-            <div class="social animation-appear">
-                <h2 class="title">SOCIALS</h2>
-                <div class="image-grid-container2">
-                    <div class="image-grid2">
-                        <a class="image-corners img-hover button" title="Github" href="https://github.com/Druiz07"><img src="img/git.png"></a>
-                        <a class="image-corners img-hover button" title="LinkedIn" href="https://www.linkedin.com/in/daniel-ruiz-figueroa-developer/"><img src="img/linkedin.png"></a>
-                    </div>
-                </div>
-            </div>            
-            <div class="add-space5"></div>
-            </div>
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <p class="eyebrow hero__in" style="--d:0"><span class="dot"></span><span data-i18n="hero.eyebrow">Madrid, España</span></p>
+      <h1 class="hero__title" aria-label="Daniel Ruiz Figueroa">
+        <span class="line"><span style="--d:1">Daniel</span></span>
+        <span class="line"><span style="--d:2">Ruiz <em>Figueroa</em></span></span>
+      </h1>
+      <div class="hero__row">
+        <p class="hero__lead hero__in" style="--d:4" data-i18n="hero.lead">
+          Desarrollador de software en Madrid. Trabajo sobre todo con C#, C++ y Python.
+        </p>
+        <div class="hero__cta hero__in" style="--d:5">
+          <a class="btn btn--primary" href="#proyectos"><span data-i18n="hero.cta1">Ver proyectos</span><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 5v14m0 0l-6-6m6 6l6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn" href="#contacto" data-i18n="hero.cta2">Contactar</a>
         </div>
+      </div>
+      <ul class="hero__links hero__in" style="--d:6">
+        <li><a href="mailto:daniel.ruiz.figueroa01@gmail.com">Email <span>↗</span></a></li>
+        <li><a href="https://www.linkedin.com/in/daniel-ruiz-figueroa-developer/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a></li>
+        <li><a href="https://github.com/Druiz07" target="_blank" rel="noopener">GitHub <span>↗</span></a></li>
+      </ul>
+      <a class="hero__scroll hero__in" style="--d:7" href="#sobre-mi" aria-label="Bajar"><span></span></a>
     </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track">
+        <span>C#</span><span>C++</span><span>Python</span><span>Java</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Azure</span><span>Git</span>
+        <span>C#</span><span>C++</span><span>Python</span><span>Java</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Azure</span><span>Git</span>
+      </div>
+    </div>
+
+    <!-- ============ SOBRE MÍ ============ -->
+    <section class="section" id="sobre-mi">
+      <header class="section__head" data-reveal>
+        <span class="section__num">01</span>
+        <h2 data-i18n="about.title">Sobre mí</h2>
+      </header>
+      <div class="about">
+        <figure class="about__photo" data-reveal>
+          <img src="img/fotoGraduacion.jpg" alt="Daniel Ruiz Figueroa" loading="lazy" width="595" height="806">
+        </figure>
+        <div class="about__text">
+          <p class="big" data-reveal data-i18n="about.p1">
+            Soy Daniel, desarrollador de software en Madrid, graduado por la Universidad Complutense de Madrid.
+          </p>
+          <p data-reveal data-i18n="about.p2">
+            Además de C#, C++ y Python, me manejo con Java, JavaScript, HTML y CSS. Me gusta aprender, trabajar en equipo y resolver problemas.
+          </p>
+          <!-- TODO Daniel: añade aquí en qué trabajas ahora y qué tipo de proyectos buscas. -->
+          <p class="ph" data-reveal data-i18n="about.p3">Pendiente: en qué trabajo ahora y qué busco.</p>
+          <dl class="facts" data-reveal>
+            <div><dt data-i18n="facts.base">Base</dt><dd>Madrid</dd></div>
+            <div><dt data-i18n="facts.lang">Idiomas</dt><dd data-i18n="facts.langv">Español · Inglés B2</dd></div>
+            <div><dt data-i18n="facts.focus">Foco</dt><dd data-i18n="facts.focusv">Desarrollo de software</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROYECTOS ============ -->
+    <section class="section" id="proyectos">
+      <header class="section__head" data-reveal>
+        <span class="section__num">02</span>
+        <h2 data-i18n="projects.title">Proyectos</h2>
+      </header>
+
+      <!-- Proyecto destacado: Skyfall -->
+      <article class="feature card" data-reveal>
+        <div class="feature__media">
+          <!-- TODO Daniel: sustituye este bloque por el vídeo o una captura de Skyfall.
+               Vídeo:  <video src="media/skyfall.mp4" poster="img/skyfall.jpg" controls playsinline></video>
+               Imagen: <img src="img/skyfall.jpg" alt="Skyfall"> -->
+          <div class="media-ph">
+            <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+            <span data-i18n="sky.media">Vídeo de demostración · pendiente</span>
+          </div>
+        </div>
+        <div class="feature__body">
+          <p class="tag-line"><span class="pill pill--accent" data-i18n="sky.badge">Proyecto destacado</span><span class="mono">01</span></p>
+          <h3>Skyfall</h3>
+          <!-- TODO Daniel: descripción de Skyfall en una o dos frases. -->
+          <p class="ph" data-i18n="sky.desc">Pendiente: qué es Skyfall y qué problema resuelve.</p>
+          <ul class="bullets">
+            <!-- TODO Daniel: dos o tres datos concretos (tu papel, resultado, tecnología clave). -->
+            <li class="ph" data-i18n="sky.b1">Pendiente: mi papel en el proyecto.</li>
+            <li class="ph" data-i18n="sky.b2">Pendiente: un resultado o dato concreto.</li>
+          </ul>
+          <ul class="chips">
+            <li class="ph" data-i18n="sky.tech">Tecnologías · pendiente</li>
+          </ul>
+          <div class="feature__links">
+            <!-- TODO Daniel: enlaces reales (demo, repositorio, publicación de LinkedIn). -->
+            <span class="link link--off" data-i18n="sky.demo">Demo · pendiente</span>
+            <span class="link link--off" data-i18n="sky.code">Código · pendiente</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Resto de proyectos: placeholders -->
+      <div class="grid">
+        <!-- TODO Daniel: cada tarjeta es un proyecto. Copia la estructura de Skyfall cuando tengas el contenido. -->
+        <article class="card card--ph" data-reveal style="--i:0">
+          <span class="mono">02</span>
+          <h3 data-i18n="ph.title">Próximo proyecto</h3>
+          <p data-i18n="ph.desc">En preparación.</p>
+          <div class="shimmer"><i></i><i></i><i></i></div>
+        </article>
+        <article class="card card--ph" data-reveal style="--i:1">
+          <span class="mono">03</span>
+          <h3 data-i18n="ph.title">Próximo proyecto</h3>
+          <p data-i18n="ph.desc">En preparación.</p>
+          <div class="shimmer"><i></i><i></i><i></i></div>
+        </article>
+        <article class="card card--ph" data-reveal style="--i:2">
+          <span class="mono">04</span>
+          <h3 data-i18n="ph.title">Próximo proyecto</h3>
+          <p data-i18n="ph.desc">En preparación.</p>
+          <div class="shimmer"><i></i><i></i><i></i></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ TRAYECTORIA ============ -->
+    <section class="section" id="trayectoria">
+      <header class="section__head" data-reveal>
+        <span class="section__num">03</span>
+        <h2 data-i18n="path.title">Trayectoria</h2>
+      </header>
+      <ol class="timeline">
+        <!-- TODO Daniel: añade tu experiencia profesional (puesto, empresa, fechas, una línea de lo que hiciste). -->
+        <li data-reveal>
+          <span class="timeline__date ph" data-i18n="path.e1d">Fechas · pendiente</span>
+          <div>
+            <h3 class="ph" data-i18n="path.e1t">Pendiente: puesto y empresa</h3>
+            <p class="ph" data-i18n="path.e1p">Pendiente: qué hice allí, en una línea.</p>
+          </div>
+        </li>
+        <li data-reveal>
+          <span class="timeline__date">2019 — 2024</span>
+          <div>
+            <h3 data-i18n="path.u1t">Grado en Desarrollo de Videojuegos</h3>
+            <p data-i18n="path.u1p">Universidad Complutense de Madrid. Trabajo de fin de grado: un simulador de descenso y aterrizaje planetario en C#, conectado a Microsoft Azure para cargar los recursos desde la nube.</p>
+          </div>
+        </li>
+        <li data-reveal>
+          <span class="timeline__date" data-i18n="path.l1d">Idiomas</span>
+          <div>
+            <h3 data-i18n="path.l1t">Inglés B2 (Cambridge)</h3>
+            <p data-i18n="path.l1p">Español nativo.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ STACK ============ -->
+    <section class="section" id="stack">
+      <header class="section__head" data-reveal>
+        <span class="section__num">04</span>
+        <h2>Stack</h2>
+      </header>
+      <div class="stack">
+        <div class="card stack__group" data-reveal style="--i:0">
+          <h3 data-i18n="stack.g1">Lenguajes</h3>
+          <ul class="chips"><li>C#</li><li>C++</li><li>Python</li><li>C</li><li>Java</li><li>JavaScript</li><li>HTML</li><li>CSS</li></ul>
+        </div>
+        <div class="card stack__group" data-reveal style="--i:1">
+          <h3 data-i18n="stack.g2">Herramientas</h3>
+          <ul class="chips"><li>Git</li><li>Visual Studio</li><li>VS Code</li><li>Android Studio</li><li>Anaconda</li><li>Jupyter Notebook</li></ul>
+        </div>
+        <div class="card stack__group" data-reveal style="--i:2">
+          <h3 data-i18n="stack.g3">Nube</h3>
+          <ul class="chips"><li>Microsoft Azure</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="section contact" id="contacto">
+      <p class="eyebrow" data-reveal><span class="dot"></span><span data-i18n="contact.eyebrow">Contacto</span></p>
+      <h2 class="contact__title" data-reveal data-i18n="contact.title">Hablemos.</h2>
+      <div class="contact__mail" data-reveal>
+        <a href="mailto:daniel.ruiz.figueroa01@gmail.com">daniel.ruiz.figueroa01@gmail.com</a>
+        <button class="copy" id="copy" type="button" data-i18n="contact.copy">Copiar</button>
+      </div>
+      <ul class="contact__links" data-reveal>
+        <li><a href="https://www.linkedin.com/in/daniel-ruiz-figueroa-developer/" target="_blank" rel="noopener">LinkedIn <span>↗</span></a></li>
+        <li><a href="https://github.com/Druiz07" target="_blank" rel="noopener">GitHub <span>↗</span></a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year">2026</span> Daniel Ruiz Figueroa</span>
+    <a href="#top" data-i18n="footer.top">Volver arriba ↑</a>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
